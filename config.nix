@@ -1,18 +1,26 @@
 {
-  username = "hydenix";
-  gitUser = "hydenix";
-  gitEmail = "exampleEmail";
+  username = "rif";
+  gitUser = "ChrolloRifat";
+  gitEmail = "officialmhrifat@outlook.com";
   host = "hydenix";
   /*
     Default password is required for sudo support in systems
     !REMEMBER TO USE passwd TO CHANGE THE PASSWORD!
   */
-  defaultPassword = "hydenix";
-  timezone = "America/Vancouver";
-  locale = "en_CA.UTF-8";
+  defaultPassword = "ch";
+  timezone = "Asia/Dhaka";
+  locale = "en_US.UTF-8";
 
   # hardware config - sudo nixos-generate-config --show-hardware-config > hardware-configuration.nix
   hardwareConfig = (toString ./hardware-configuration.nix);
+
+  # Bootloader for Rif's Laptop
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
+  # Swappiness
+  boot.kernel.sysctl = { "vm.swappiness" = 10;};
 
   # List of drivers to install in ./hosts/nixos/drivers.nix
   drivers = [
@@ -42,8 +50,8 @@
   nixModules = [
     # (toString ./my-module.nix)
     # in my-module.nix you can reference this userConfig
-    # ({ userConfig, userPkgs, pkgs, ... }: {
-    #   environment.systemPackages = [ userPkgs.nushell ];
+    # ({ userConfig, pkgs, ... }: {
+    #   environment.systemPackages = [ pkgs.git ];
     # })
   ];
   # List of nix modules to import in ./lib/mkConfig.nix
@@ -67,46 +75,46 @@
     # list of themes to choose from
     themes = [
       # -- Default themes
-      "Catppuccin Latte"
+      # "Catppuccin Latte"
       "Catppuccin Mocha"
-      "Decay Green"
-      "Edge Runner"
-      "Frosted Glass"
-      "Graphite Mono"
-      "Gruvbox Retro"
-      "Material Sakura"
-      "Nordic Blue"
-      "Rose Pine"
-      "Synth Wave"
-      "Tokyo Night"
+      # "Decay Green"
+      # "Edge Runner"
+      # "Frosted Glass"
+      # "Graphite Mono"
+      # "Gruvbox Retro"
+      # "Material Sakura"
+      # "Nordic Blue"
+      # "Rose Pine"
+      # "Synth Wave"
+      # "Tokyo Night"
 
       # -- Themes from hyde-gallery
-      "Abyssal-Wave"
-      "AbyssGreen"
-      "Bad Blood"
-      "Cat Latte"
-      "Crimson Blade"
-      "Dracula"
-      "Edge Runner"
-      "Green Lush"
-      "Greenify"
-      "Hack the Box"
-      "Ice Age"
-      "Mac OS"
-      "Monokai"
-      "Monterey Frost"
-      "One Dark"
-      "Oxo Carbon"
-      "Paranoid Sweet"
-      "Pixel Dream"
-      "Rain Dark"
-      "Red Stone"
-      "Rose Pine"
-      "Scarlet Night"
-      "Sci-fi"
-      "Solarized Dark"
-      "Vanta Black"
-      "Windows 11"
+      # "Abyssal-Wave"
+      # "AbyssGreen"
+      # "Bad Blood"
+      # "Cat Latte"
+      # "Crimson Blade"
+      # "Dracula"
+      # "Edge Runner"
+      # "Green Lush"
+      # "Greenify"
+      # "Hack the Box"
+      # "Ice Age"
+      # "Mac OS"
+      # "Monokai"
+      # "Monterey Frost"
+      # "One Dark"
+      # "Oxo Carbon"
+      # "Paranoid Sweet"
+      # "Pixel Dream"
+      # "Rain Dark"
+      # "Red Stone"
+      # "Rose Pine"
+      # "Scarlet Night"
+      # "Sci-fi"
+      # "Solarized Dark"
+      # "Vanta Black"
+      # "Windows 11"
     ];
 
     # Exactly the same as hyde.conf
@@ -125,12 +133,12 @@
     };
   };
 
-  vm = {
+  #vm = {
     # 4 GB minimum
-    memorySize = 4096;
+  #  memorySize = 4096;
     # 2 cores minimum
-    cores = 2;
+  #  cores = 2;
     # 30GB minimum for one theme - 50GB for multiple themes - more for development and testing
-    diskSize = 20000;
-  };
+  #  diskSize = 20000;
+  #};
 }
